@@ -12,7 +12,8 @@ module.exports = function(options) {
     devtool: 'cheap-module-source-map',
     devServer: {
       port: 9999,
-      hot: options.HMR,
+ //     host: options.HMR,
+      host: "121.157.55.240",
       stats: {
         colors: true,
         hash: true,

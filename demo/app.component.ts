@@ -35,6 +35,7 @@ import { Location, LocationStrategy, HashLocationStrategy } from '@angular/commo
             <h4>Basic</h4>
             <ul>
               <li><a href="#virtual-scroll" (click)="state='virtual-scroll'">10k Rows</a></li>
+               <li><a href="#basic-test" (click)="state='basic-test'">Test</a></li>
               <li><a href="#full-screen" (click)="state='full-screen'">Full Screen</a></li>
               <li><a href="#inline-edit" (click)="state='inline-edit'">Inline Editing</a></li>
               <li><a href="#horz-vert-scrolling" (click)="state='horz-vert-scrolling'">Horz/Vert Scrolling</a></li>
@@ -60,7 +61,7 @@ import { Location, LocationStrategy, HashLocationStrategy } from '@angular/commo
             <ul>
               <li><a href="#row-grouping" (click)="state='row-grouping'">Row Grouping</a></li>            
               <li><a href="#" (click)="state=''">Fluid Row Height</a></li>
-              <li><a href="#basic-fixed" (click)="state='basic-fixed'">Fixed Row Height</a></li>
+             
               <li><a href="#dynamic" (click)="state='dynamic'">Dynamic Row Height</a></li>
               <li><a href="#row-details" (click)="state='row-details'">Row Detail</a></li>
               <li><a href="#responsive" (click)="state='responsive'">Responsive</a></li>
@@ -118,6 +119,7 @@ import { Location, LocationStrategy, HashLocationStrategy } from '@angular/commo
       <content>
         <!-- Basic -->
         <basic-auto-demo *ngIf="!state"></basic-auto-demo>
+        <basic-test-demo *ngIf="state === 'basic-test'"></basic-test-demo>
         <basic-fixed-demo *ngIf="state === 'basic-fixed'"></basic-fixed-demo>
         <full-screen-demo *ngIf="state === 'full-screen'"></full-screen-demo>
         <inline-edit-demo *ngIf="state === 'inline-edit'"></inline-edit-demo>

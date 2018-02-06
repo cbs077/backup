@@ -4,6 +4,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgxDatatableModule } from '../src';
 import { AppComponent } from './app.component';
 
+// -- test.ts
+import { BasicTestComponent } from './test/basic-test.component';
+
 // -- Basic
 import { BasicFixedComponent } from './basic/basic-fixed.component';
 import { BasicAutoComponent } from './basic/basic-auto.component';
@@ -64,6 +67,7 @@ import { ColumnPinningComponent } from './columns/pinning.component';
   declarations: [
     AppComponent,
     BasicAutoComponent,
+    BasicTestComponent,
     BasicFixedComponent,
     FullScreenComponent,
     InlineEditComponent,
