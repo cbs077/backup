@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions, URLSearchParams } from '@angular/http';
+import { Http, Response, Headers, RequestOptions, RequestMethod, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 // Observable class extensions
 import 'rxjs/add/observable/of';
@@ -19,10 +19,7 @@ export class WebApiObservableService {
     headers: Headers;
     options: RequestOptions;
 
-    constructor(private http: Http
- //    ,  private toasterService: ToasterService,
- //       private loaderService: LoaderService
-    ){
+    constructor(private http: Http     ){
         this.headers = new Headers({ 'Content-Type': 'application/json', 'Accept': 'q=0.8;application/json;q=0.9' });
         this.options = new RequestOptions({ headers: this.headers });
     }
@@ -66,6 +63,7 @@ export class WebApiObservableService {
 
     createService(url: string, param: any): Observable<any> {
         let body = JSON.stringify(param);
+        this.options = new RequestOptions({ method: RequestMethod.Post });
         return this.http
             .post(url, body, this.options)
             .map(this.extractData)

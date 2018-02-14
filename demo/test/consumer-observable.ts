@@ -13,7 +13,7 @@ export class SearchMovieListComponent implements OnInit {
 
     constructor(
         private movieObservableService: WebApiObservableService) {
-        this.searchMovieModel = {id: '12' , name: 'abc'};
+    //    this.searchMovieModel = {id: '12' , name: 'abc'};
     }
 
     ngOnInit() {

@@ -25,9 +25,14 @@ import { WebApiObservableService } from './web-api-observable.service';
         create
       </button>    
       <button type="button" class="btn btn-primary"
-              (click)="get1()">
+              (click)="apply()">
         getAllBooks
       </button> 
+           <h1 class="title">Angular Router</h1>
+      <a routerLink="/heroes">Heroes</a>
+      <router-outlet></router-outlet>
+
+
     </div>
   `,
   providers: [WebApiObservableService]
@@ -51,16 +56,15 @@ export class BasicTestComponent {
       '°¡³ª',
       'abc'
   ];  
+  searchMovieModel: SearchMovieModel;
   constructor(private movieObservableService: WebApiObservableService) {    
     this.fetch((data) => {
       //this.rows = 
       console.log( data ) ;
       //  setTimeout(() => { this.loadingIndicator = false; }, 1500);
     });
-    this.searchMovieModel = {id: '12' , name: 'abc'};
-
+    this.searchMovieModel = {title: '12' , author: 'abc'};
   }
-
 
   fetch(cb) {
     const req = new XMLHttpRequest();
@@ -75,8 +79,8 @@ export class BasicTestComponent {
     this.movieObservableService
             .createService('http://121.157.55.240:8080/api/books', this.searchMovieModel)
             .subscribe(
-                result => console.log("5. createService: " + result),
-                error => this.errorMessage = <any>error
+                result => console.log("5. createService: " + result)
+    //            error => this.errorMessage = <any>error
     );   
   }
   apply(): void {
