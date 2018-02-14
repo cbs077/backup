@@ -4,14 +4,14 @@ import { Component } from '@angular/core';
   selector: 'basic-auto-demo',
   template: `
     <div>
-      <h3>
+      <h4>
         Fluid Row Heights 
         <small>
           <a href="https://github.com/swimlane/ngx-datatable/blob/master/demo/basic/basic-auto.component.ts" target="_blank">
             Source
           </a>
         </small>
-      </h3>
+      </h4>
       <ngx-datatable
         class="material"
         [rows]="rows"

@@ -1,8 +1,14 @@
 import { NgModule, ApplicationRef } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { NgxDatatableModule } from '../src';
 import { AppComponent } from './app.component';
+
+//import { BsDropdownModule } from 'ngx-bootstrap';
+//import { TabsModule } from 'ngx-bootstrap/tabs';
+import { ButtonsModule  } from 'ngx-bootstrap/buttons';
+import { TypeaheadModule  } from 'ngx-bootstrap/typeahead';
 
 // -- test.ts
 import { BasicTestComponent } from './test/basic-test.component';
@@ -63,6 +69,7 @@ import { ColumnForceComponent } from './columns/column-force.component';
 import { ColumnFlexComponent } from './columns/column-flex.component';
 import { ColumnPinningComponent } from './columns/pinning.component';
 
+import { WebApiObservableService } from './test/web-api-observable.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -109,8 +116,11 @@ import { ColumnPinningComponent } from './columns/pinning.component';
     FooterDemoComponent,
     RowGroupingComponent,
     BootstrapThemeComponent
+    
   ],
-  imports: [BrowserModule, NgxDatatableModule],
+  imports: [BrowserModule, NgxDatatableModule, ButtonsModule.forRoot(), TypeaheadModule.forRoot(), FormsModule ],
+  providers: [ WebApiObservableService ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

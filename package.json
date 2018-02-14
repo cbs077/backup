@@ -83,6 +83,7 @@
     "@angular/platform-server": "^4.0.1",
     "@types/jasmine": "^2.8.2",
     "@types/node": "^8.0.53",
+    "@angular/forms": "^4.3.2",
     "angular2-template-loader": "^0.6.2",
     "autoprefixer": "^7.1.6",
     "awesome-typescript-loader": "^3.4.0",
@@ -134,5 +135,17 @@
     "webpack-merge": "^4.1.1",
     "webpack-notifier": "^1.5.0",
     "zone.js": "^0.8.18"
+  },
+  "dependencies": {
+    "@angular/forms": "^4.4.6",
+    "@angular/http": "^5.2.5",
+    "body-parser": "^1.18.2",
+    "bootstrap": "^4.0.0-beta.3",
+    "express": "^4.16.2",
+    "install": "^0.10.4",
+    "mongoose": "^5.0.4",
+    "ngx-bootstrap": "^2.0.2",
+    "npm": "^5.6.0",
+    "sudo": "^1.0.3"
   }
 }
