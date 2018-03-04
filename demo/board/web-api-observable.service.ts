@@ -63,29 +63,16 @@ export class WebApiObservableService {
 
     createService(url: string, param: any): Observable<any> {
         let body = JSON.stringify(param);
- //     let body = param ;
-        
- //     let body = JSON.stringify({ "title":"a" }).toString('utf8');
-;
         
         console.log( param, url, body, this.options );
-//        this.headers = new Headers({   'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8', });
+//      this.headers = new Headers({   'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8', });
 
         this.headers = new Headers({ 'Content-Type': 'application/json', 'Accept': 'q=0.8;application/json;q=0.9' });
         this.options = new RequestOptions({
              headers: this.headers ,
              method: RequestMethod.Post 
         });
-    
-//        this.options = new RequestOptions({   method: RequestMethod.Post });
-
-//        let headers = new Headers({   'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'});
-  //      this.headers = new Headers('Content-Type', 'application/json' );
-  //      this.headers.append( 'Accept', 'application/json'  );
-  //      this.options = new RequestOptions({ headers: this.headers });
-
- //     let options = new RequestOptions({ headers: headers });
-      
+         
         return this.http
             .post(url, body, this.options )
             .map(this.extractData)

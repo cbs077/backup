@@ -11,7 +11,7 @@ import { WebApiObservableService } from './web-api-observable.service';
       </h3>
       <pre class="card card-block card-header">Model: {{selected | json}}</pre>
       <input [(ngModel)]="selected"
-     
+             [typeahead]="states"
              class="form-control">
 
       <pre class="card card-block card-header">{{singleModel}}</pre>

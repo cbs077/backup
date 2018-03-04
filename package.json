@@ -145,6 +145,7 @@
     "express": "^4.16.2",
     "install": "^0.10.4",
     "mongoose": "^5.0.4",
+    "ng2-ckeditor": "^1.1.14",
     "ngx-bootstrap": "^2.0.2",
     "npm": "^5.6.0",
     "sudo": "^1.0.3"
