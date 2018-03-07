@@ -24,26 +24,31 @@ export class MockDataService {
         'title': 'Jacqueline',
         'contents': 'Montgomery',
         'category': 'jmontgomery1@fda.gov'
-    }, {
-        'author': 3,
-        'title': 'Albert',
-        'contents': 'Moreno',
-        'category': 'amoreno2@mac.com'
-    }, {
-        'author': 4,
-        'title': 'Donna',
-        'contents': 'Hawkins',
-        'category': 'dhawkins3@hud.gov'
-    }, {
-        'author': 5,
-        'title': 'Davauthor',
-        'contents': 'Nichols',
-        'category': 'dnichols4@pen.io'
-    }, {
-        'author': 6,
-        'title': 'Diana',
-        'contents': 'Garcia',
-        'category': 'dgarcia5@amazon.com'
+    },{
+        'author': 2,
+        'title': 'Jacqueline',
+        'contents': 'Montgomery',
+        'category': 'jmontgomery1@fda.gov'
+    },{
+        'author': 2,
+        'title': 'Jacqueline',
+        'contents': 'Montgomery',
+        'category': 'jmontgomery1@fda.gov'
+    },{
+        'author': 2,
+        'title': 'Jacqueline',
+        'contents': 'Montgomery',
+        'category': 'jmontgomery1@fda.gov'
+    },{
+        'author': 2,
+        'title': 'Jacqueline',
+        'contents': 'Montgomery',
+        'category': 'jmontgomery1@fda.gov'
+    },{
+        'author': 2,
+        'title': 'Jacqueline',
+        'contents': 'Montgomery',
+        'category': 'jmontgomery1@fda.gov'
     }];
 
     constructor( private _http: Http ) {
@@ -51,25 +56,23 @@ export class MockDataService {
     }
 
     public listPersons(from: number, count: number, orderBy: ColumnOrder[] ): Observable<TableResultsPage> {
-           console.log( "count", count );
+            
     
             const result = this.persons.slice(from, from + count);
     //      const result = data.slice(from, from + count);
-    
-    //      console.log( "result", result ) ;
-            console.log( "persons", this.persons ) ;  
+    //      console.log( "persons", this.persons ) ;  
             
             const pr = new TableResultsPage();
             pr.count = count;
             pr.from = from;
             pr.total = this.persons.length;
             pr.results = result;
+        
+            console.log( "result", result );
     //      pr.results = data;
     
     //      console.log("pr", pr);
             return Observable.of(pr);
-
-
     }
     public setdata(data){
         console.log( "setdata", data );

@@ -9,7 +9,7 @@ import {TableComponent} from '../component-wrapper/src/app/table/table.component
 import { Http} from '@angular/http';
 
 @Component({
-//    selector: 'app-test-component',
+    selector: 'app-test-component',
 //  templateUrl: './test.component.html',
     template:` 
     <div class="container mx-auto col-8">
@@ -22,13 +22,14 @@ import { Http} from '@angular/http';
                 <tr>
                     <td>{{item.category}}</td>
                     <td>{{item.author}}</td>
-                    <td>{{item.title}}</td>
+   <!--  <a [routerLink]="['/dashboard', item.title]" <td><a ng-href="#/write">{{item.title}}</a></td>-->
+                    <td ><a [routerLink]="['/dashboard']" (click)="handleHeaderRowClick()">{{item.title}}</a></td>
                     <td>{{item.contents}}</td>
                 </tr>
             </ng-template>
         </ngx-iq-table>
         <div class="text-right">  
-            <button type="button" class="btn btn-primary" (click)="getMyBlog()" >get</button> 
+            <button type="button" class="btn btn-primary" (click)="get1()" >get</button> 
             <button type="button" class="btn btn-primary" routerLink="/write">글쓰기</button>                   
         </div> 
         <router-outlet></router-outlet>
@@ -66,27 +67,43 @@ export class TestComponent implements OnInit {
     ];
 
     constructor(private mockDataService: MockDataService,
+                private tableComponent: TableComponent,
                 private activatedRoute: ActivatedRoute,
-                private _http: Http) {
+                private _http: Http) 
+    {
+        console.log("constructor");
+        this.getdata();
+        
     }
-
+    handleHeaderRowClick(){
+        console.log("hi");
+    }
+    fetchEvent(){
+        return  this._http.get('http://121.157.55.240:8080/api/books')
+                    .map((res: Response) => res.json())
+                     .then( 
+                            this.mockDataService.setdata(data);
+                     ); 
+    }
     ngOnInit(): void {    
-    //    getdata(data);
-         this.getdata1();
-    
-         this.getdata();
+          this.getdata();   
+          this.getdata1(); 
     }
     getdata1() {
-        return this._http.get('http://121.157.55.240:8080/api/books')
+        console.log("AD");
+        this._http.get('http://121.157.55.240:8080/api/books')
                     .map((res: Response) => res.json())
-                     .subscribe(data => {
-        //                  this.data = data;
+                    .subscribe(data => {
+                            console.log("aa");
                             this.mockDataService.setdata(data);
-        //                    this.getdata(data)
-                            console.log("getdata1", data);
+                            this.table.onPageClicked(1) ;
+      //                      console.log("getdata1", data);
+      //                      this.getdata();
+                            
         });
     }
-    getdata(){        
+    getdata(){ 
+          
       this.dataSource = (rpd => this.mockDataService.listPersons(rpd.from, rpd.count, rpd.orderBy ));        
             const currentPage = this.activatedRoute.snapshot.queryParams['currentPage'];
     //      console.log("getdata", this.dataSource);
@@ -96,26 +113,8 @@ export class TestComponent implements OnInit {
     }
 
     get1(): void {
-        console.log("test"); 
-        const req = new XMLHttpRequest();
-    //    req.header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type");
-        req.open('GET', 'http://121.157.55.240:8080/api/books');  
-        req.onload = () => {
-            console.log( req.response) ;
-            this.dataSource = (rpd => this.mockDataService.listPersons(rpd.from, rpd.count, rpd.orderBy, req.response));
-        
-            const currentPage = this.activatedRoute.snapshot.queryParams['currentPage'];
-            console.log("asd", this.dataSource);
-            if (currentPage) {
-                this.table.currentPage = Number(currentPage);
-            }
-//            console.log( JSON.parse( req.response)[8]["contents"] );
-//            this.username = JSON.parse( req.response)[11]["contents"] ;
-//            this.div.nativeElement.innerHTML = JSON.parse( req.response)[11]["contents"];
-                   
-        }
-        req.send();
+ //      this.tableComponent.refreshData();
+       this.table.onPageClicked(1) ;
     }
-  }
     
 }

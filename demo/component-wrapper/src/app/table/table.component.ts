@@ -1,4 +1,4 @@
-import {Component, ContentChild, Input, OnInit} from '@angular/core';
+import {Component, ContentChild, Input, OnInit, Injectable } from '@angular/core';
 import {TableResultsPage} from '../table-results-page';
 import {PageRequestData} from '../page-request-data';
 import {TableColumn} from '../table-column';
@@ -32,7 +32,7 @@ import {TableState} from '../table-state';
         </tr>
         </thead>
         <tbody>
-        <ng-template ngFor [ngForOf]="resultsPage.results" [ngForTemplate]="rows"></ng-template>
+        <ng-template ngFor [ngForOf]="resultsPage.results" [ngForTemplate]="rows"  ></ng-template>
         </tbody>
     </table>
     <ngx-iq-footer [resultsPage]="resultsPage"
@@ -42,6 +42,7 @@ import {TableState} from '../table-state';
     `,
     styleUrls: ['./table.component.css']
 })
+@Injectable()
 export class TableComponent implements OnInit {
 
     @Input() tableId: string;
@@ -144,12 +145,21 @@ export class TableComponent implements OnInit {
     }
 
     private loadData(requestPageData: PageRequestData) {
+        console.log( "loadData",  this.dataSource);
         this.dataSource(requestPageData)
             .subscribe((resultsPage) => this.resultsPage = resultsPage);
     }
 
     refreshData() {
-        this.loadData(this.buildDataRequestConfig());
+        console.log("rfresh()");
+ //       this.loadData(this.buildDataRequestConfig());
+        
+        this.currentPage = 0;
+        if (this.tableId) {
+            this.saveState();
+        }
+        const drc = this.buildDataRequestConfig();
+        this.loadData(drc);
     }
 
     getSortDirection(column: TableColumn): 'asc' | 'desc' {
