@@ -15,41 +15,11 @@ export class Person {
 export class MockDataService {
 
     private persons: Person[] = [{
-        'author1': 1,
+        'author': 1,
         'title': 'Evelyn',
         'contents': 'Burns',
         'category': 'eburns0@amazon.co.uk'
-    }, {
-        'author': 2,
-        'title': 'Jacqueline',
-        'contents': 'Montgomery',
-        'category': 'jmontgomery1@fda.gov'
-    },{
-        'author': 2,
-        'title': 'Jacqueline',
-        'contents': 'Montgomery',
-        'category': 'jmontgomery1@fda.gov'
-    },{
-        'author': 2,
-        'title': 'Jacqueline',
-        'contents': 'Montgomery',
-        'category': 'jmontgomery1@fda.gov'
-    },{
-        'author': 2,
-        'title': 'Jacqueline',
-        'contents': 'Montgomery',
-        'category': 'jmontgomery1@fda.gov'
-    },{
-        'author': 2,
-        'title': 'Jacqueline',
-        'contents': 'Montgomery',
-        'category': 'jmontgomery1@fda.gov'
-    },{
-        'author': 2,
-        'title': 'Jacqueline',
-        'contents': 'Montgomery',
-        'category': 'jmontgomery1@fda.gov'
-    }];
+    } ];
 
     constructor( private _http: Http ) {
 
@@ -79,34 +49,6 @@ export class MockDataService {
         this.persons = data ;
                
     }
-    getMyBlog() {
-        return this._http.get('http://121.157.55.240:8080/api/books')
-                    .map((res: Response) => res.json())
-                     .subscribe(data => {
-                           // this.data = data;
-                           // this.getdata(data)
-                            this.persons  = data;
-                            console.log("getMyBlog()", data);
-        });
-    }
-    public listPersons1(from: number, count: number, orderBy: ColumnOrder[] ): Observable<TableResultsPage> {
-            this.getMyBlog() ;
-        //this.persons  = data;  
-            console.log("person",  this.persons );
-            const result = this.persons.slice(from, from + count);
-    //        console.log( "listPersons1", data ) ;  
-            
-            const pr = new TableResultsPage();
-            pr.count = count;
-            pr.from = from;
-            pr.total = this.persons.length;
-            pr.results = result;
-    //      pr.results = data;
-    
-            console.log("pr", pr);
-            return Observable.of(pr);
-    }
-
     private sortFunction(order) {
         return (person1: Person, person2: Person) => {
             if ('asc' === order.direction) {

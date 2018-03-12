@@ -29,7 +29,7 @@ import { WebApiObservableService } from './web-api-observable.service';
                   [toolbar]="'clipboard,1'">
                 </ckbutton>
           </ckeditor>
-        <button type="button" class="btn btn-primary centered"  (click)="save()">���옣</button> 
+        <button type="button" class="btn btn-primary centered"  (click)="save()">저장</button> 
          
         <!--    <button class="btn btn-sm" [routerLink]="['/test2']">Navegar</button> -->
      </div>
@@ -44,36 +44,13 @@ export class WriteComponent implements OnInit {
     
     @ViewChild(TableComponent) table: TableComponent;
     dataSource: (requestPageData: PageRequestData) => Observable<TableResultsPage>;
-    columns: TableColumn[] = [
-        {
-            name: 'Id',
-            prop: 'id',
-            width: 10,
-            widthUnit: '%'
-        }, {
-            name: 'First name',
-            prop: 'firstname',
-            width: 30,
-            widthUnit: '%'
-        }, {
-            name: 'Last name',
-            prop: 'lastname',
-            width: 30,
-            widthUnit: '%'
-        }, {
-            name: 'E-Mail',
-            prop: 'email',
-            width: 30,
-            widthUnit: '%'
-        }
-    ];
-
+    
     searchMovieModel: SearchMovieModel;
     constructor(private mockDataService: MockDataService,
                 private activatedRoute: ActivatedRoute,
                 private movieObservableService: WebApiObservableService) {
         
-        this.searchMovieModel = {  "title": "12" , "author": "abc"};
+  //      this.searchMovieModel = {  "title": "12" , "author": "abc"};
     }
 
     ngOnInit(): void {
@@ -89,9 +66,9 @@ export class WriteComponent implements OnInit {
     if ( CKEDITOR.instances.editor1.getData() == '' )
      alert( 'There is no data available.' );
    
-   console.log( CKEDITOR.instances.editor1.getData() );
-    var contents = CKEDITOR.instances.editor1.getData()  ;
-    this.searchMovieModel = {  "category": this.category , "title": this.title , "contents": contents};  
+//    console.log( CKEDITOR.instances.editor1.getData() );
+     var contents = CKEDITOR.instances.editor1.getData()  ;
+     this.searchMovieModel = {  "author":this.author, "id": this.id, "category": this.category , "title": this.title , "contents": contents};  
 
     this.movieObservableService
             .createService('http://121.157.55.240:8080/api/books', this.searchMovieModel )

@@ -26,8 +26,6 @@ import { TypeaheadModule  } from 'ngx-bootstrap/typeahead';
 
 import {AppRoutingModule} from './app-routing.module'
 // -- test.ts
-import { BasicTestComponent } from './test/basic-test.component';
-
 import { WebApiObservableService } from './board/web-api-observable.service';
 @NgModule({
   declarations: [
@@ -46,7 +44,8 @@ import { WebApiObservableService } from './board/web-api-observable.service';
    RouterModule.forRoot([
           {  path: 'write',  component: WriteComponent },       
           {  path: 'test',  component: TestComponent },
-          { path: 'dashboard', component: DashboardComponent }
+          { path: 'dashboard', component: TestComponent },
+          { path: 'dashboard/:id', component: TestComponent }
     ],{useHash: true} ),
      
  //  TypeaheadModule.forRoot(),
