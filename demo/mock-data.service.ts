@@ -2,8 +2,9 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Rx';
 import {TableResultsPage} from './component-wrapper/src/app/table-results-page';
 import {ColumnOrder} from './component-wrapper/src/app/column-order';
-import { Http} from '@angular/http';
 
+//import { Http} from '@angular/http';
+import {HttpClient} from "@angular/common/http";
 export class Person {
     author: number;
     category: string;
@@ -21,7 +22,7 @@ export class MockDataService {
         'category': 'eburns0@amazon.co.uk'
     } ];
 
-    constructor( private _http: Http ) {
+    constructor( private _http: HttpClient ) {
 
     }
 

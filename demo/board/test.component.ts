@@ -8,9 +8,11 @@ import {TableResultsPage} from '../component-wrapper/src/app/table-results-page'
 import {TableColumn} from '../component-wrapper/src/app/table-column';
 import {ActivatedRoute} from '@angular/router';
 import {TableComponent} from '../component-wrapper/src/app/table/table.component';
-import {Http} from '@angular/http';
+//import {Http} from '@angular/http';
+
+import {HttpClient} from "@angular/common/http"; 
+//import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './dashboard.component';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-test-component',
@@ -75,7 +77,7 @@ export class TestComponent implements OnInit, AfterViewChecked {
     constructor(private mockDataService: MockDataService,
                 private tableComponent: TableComponent,
                 private activatedRoute: ActivatedRoute,
-                private _http: Http) 
+                private _http: HttpClient) 
     {
         console.log("constructor");
     //    this.getdata();        
@@ -122,7 +124,7 @@ export class TestComponent implements OnInit, AfterViewChecked {
     getdata1() {
         console.log("AD");
         this._http.get('http://121.157.55.240:8080/api/books')
-                    .map((res: Response) => res.json())
+ //                   .map((res: Response) => res.json())
                     .subscribe(data => {                            
                             this.person = data ;
                             this.mockDataService.setdata(data);
