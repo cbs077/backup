@@ -10,11 +10,12 @@ import { HeroService } from '../hero.service';
 
 @Component({
   selector: 'app-dashboard',
-  template: ` <!-- <div>test:{{test}}</div>
-   <div class="container-fluid bg-1 text-center"></div> -->
+  template: ` <!-- <div>test:{{test}}</div> <div class="container-fluid bg-1 text-center"></div> -->
     <div class="w3-example mx-auto col-8"> 
         <span [innerHTML]="myHtml"></span>     
+        <button type="button" class="btn btn-info">1</button>
     </div>
+   
      <!--         <app-test-component></app-test-component>
               <router-outlet></router-outlet> -->`,
     styleUrls: ['./dashboard.component.css']

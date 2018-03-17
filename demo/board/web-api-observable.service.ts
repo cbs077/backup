@@ -15,11 +15,14 @@ import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
 
+import { SearchMovieModel } from './search-movie.model';
+
 @Injectable()
 export class WebApiObservableService {
     headers: Headers;
     options: RequestOptions;
-
+    
+    searchMovieModel: SearchMovieModel;
     constructor(private http: HttpClient     ){
         this.headers = new Headers({ 'Content-Type': 'application/json', 'Accept': 'q=0.8;application/json;q=0.9' });
         this.options = new RequestOptions({ headers: this.headers });
@@ -63,9 +66,9 @@ export class WebApiObservableService {
     }
 
     createService(url: string, param: any): Observable<any> {
-        let body = JSON.stringify(param);
+  //      let body = JSON.stringify(param);
         
-        console.log( param, url, body, this.options );
+        console.log( "aa",param, url,  this.options );
 //      this.headers = new Headers({   'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8', });
 
         this.headers = new Headers({ 'Content-Type': 'application/json', 'Accept': 'q=0.8;application/json;q=0.9' });
@@ -75,8 +78,9 @@ export class WebApiObservableService {
         });
          
         return this.http
-            .post(url, body, this.options )
-            .map(this.extractData)
+//          .post(url, body, this.options )
+            .post<SearchMovieModel>(url, param, this.options )
+ //           .map(this.extractData)
             .catch(this.handleError);
     }
 

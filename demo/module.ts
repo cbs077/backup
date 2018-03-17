@@ -1,6 +1,9 @@
 import { NgModule, ApplicationRef } from '@angular/core';
+
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
 //mport { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { APP_BASE_HREF } from '@angular/common';
@@ -60,6 +63,7 @@ import { RegisterComponent } from './register/index';
   ],
   imports: [
      BrowserModule,
+     NgbModule.forRoot(),
      HttpClientModule,
      CKEditorModule,
      NgxDatatableModule, 

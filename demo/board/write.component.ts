@@ -41,7 +41,8 @@ export class WriteComponent implements OnInit {
 
     category: string;
     title: string;
-    
+    ckeditorContent: string;
+
     @ViewChild(TableComponent) table: TableComponent;
     dataSource: (requestPageData: PageRequestData) => Observable<TableResultsPage>;
     
@@ -63,14 +64,15 @@ export class WriteComponent implements OnInit {
     }
 
    save(): void {
-    if ( CKEDITOR.instances.editor1.getData() == '' )
-     alert( 'There is no data available.' );
+ //   if ( CKEDITOR.instances.editor1.getData() == '' )
+ //    alert( 'There is no data available.' );
    
 //    console.log( CKEDITOR.instances.editor1.getData() );
-     var contents = CKEDITOR.instances.editor1.getData()  ;
+     var contents = this.ckeditorContent  ;
      this.searchMovieModel = {  "author":this.author, "id": this.id, "category": this.category , "title": this.title , "contents": contents};  
 
-    this.movieObservableService
+     console.log( "contents" , contents );
+     this.movieObservableService
             .createService('http://121.157.55.240:8080/api/books', this.searchMovieModel )
             .subscribe(
                 result => console.log("5. createService: " , result)

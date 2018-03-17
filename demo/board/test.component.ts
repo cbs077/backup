@@ -19,8 +19,27 @@ import { DashboardComponent } from './dashboard.component';
 //  templateUrl: './test.component.html',
     template:` 
     <app-dashboard class="mx-auto col-8"  [curcontents]="curcontents"></app-dashboard> 
-    <div class="container mx-auto col-8">
-        <ngx-iq-table
+<div class="container mx-auto col-8">
+<ngb-tabset>
+  <ngb-tab title="Simple">
+    <ng-template ngbTabContent>
+      
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab>
+    <ng-template ngbTabTitle><b>Fancy</b> title</ng-template>
+    <ng-template ngbTabContent>
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab title="Disabled" [disabled]="true">
+    <ng-template ngbTabContent>
+      <p>Sed commodo, leo at suscipit dictum, quam est porttitor sapien, eget sodales nibh elit id diam. Nulla facilisi. Donec egestas ligula vitae odio interdum aliquet. Duis lectus turpis, luctus eget tincidunt eu, congue et odio. Duis pharetra et nisl at faucibus. Quisque luctus pulvinar arcu, et molestie lectus ultrices et. Sed diam urna, egestas ut ipsum vel, volutpat volutpat neque. Praesent fringilla tortor arcu. Vivamus faucibus nisl enim, nec tristique ipsum euismod facilisis. Morbi ut bibendum est, eu tincidunt odio. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris aliquet odio ac lorem aliquet ultricies in eget neque. Phasellus nec tortor vel tellus pulvinar feugiat.</p>
+    </ng-template>
+  </ngb-tab>
+</ngb-tabset>
+
+
+<ngx-iq-table
                 [tableId]="'testTable'"
                 [dataSource]="dataSource"
                 [columns]="columns"
@@ -37,7 +56,7 @@ import { DashboardComponent } from './dashboard.component';
         </ngx-iq-table>
 
         <div class="text-right">  
-<!--        <button type="button" class="btn btn-primary" (click)="get1()" >get</button>     -->
+            <button type="button" class="btn btn-primary" routerLink="/login">로그인</button>     
             <button type="button" class="btn btn-primary" routerLink="/write">글쓰기</button>                   
         </div> 
         <router-outlet></router-outlet>
