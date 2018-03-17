@@ -2,10 +2,16 @@
 import { HttpClient } from '@angular/common/http';
 
 import { User } from '../_models/index';
+import { WebApiObservableService } from '../board/web-api-observable.service';
+import {Observable} from 'rxjs/Observable';
+
 
 @Injectable()
 export class UserService {
-    constructor(private http: HttpClient) { }
+    constructor(    
+            private http: HttpClient,
+            private movieObservableService: WebApiObservableService
+   ) { }
 
     getAll() {
         return this.http.get<User[]>('/api/users');
@@ -16,8 +22,15 @@ export class UserService {
     }
 
     create(user: User) {
-        return this.http.post('/api/users', user);
+//        console.log("regester", user);
+//          return this.http.post('http://121.157.55.240:8080/api/users', user);
+     
+     return   this.movieObservableService
+                    .createService('http://121.157.55.240:8080/api/user', user );
+                    
+
     }
+
 
     update(user: User) {
         return this.http.put('/api/users/' + user.id, user);

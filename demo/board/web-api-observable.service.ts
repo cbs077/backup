@@ -79,7 +79,7 @@ export class WebApiObservableService {
          
         return this.http
 //          .post(url, body, this.options )
-            .post<SearchMovieModel>(url, param, this.options )
+            .post(url, param, this.options )
  //           .map(this.extractData)
             .catch(this.handleError);
     }
