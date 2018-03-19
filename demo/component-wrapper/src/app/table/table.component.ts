@@ -145,7 +145,7 @@ export class TableComponent implements OnInit {
     }
 
     private loadData(requestPageData: PageRequestData) {
-        console.log( "loadData",  this.dataSource);
+    //    console.log( "loadData",  this.dataSource);
         this.dataSource(requestPageData)
             .subscribe((resultsPage) => this.resultsPage = resultsPage);
     }

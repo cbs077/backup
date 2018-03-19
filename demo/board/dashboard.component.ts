@@ -33,7 +33,7 @@ export class DashboardComponent implements OnInit, OnChanges {
   prenpendHtml: string = '<div><b>this prepended html</b></div>';
 
   test1(){
-    console.log("test");        
+  //  console.log("test");        
   }
     
   ngOnInit() {
@@ -47,8 +47,8 @@ export class DashboardComponent implements OnInit, OnChanges {
       let chng = changes[propName];
       let cur  = JSON.stringify(chng.currentValue);
       let prev = JSON.stringify(chng.previousValue);
-      console.log(`${propName}: currentValue = ${cur}, previousValue = ${prev}`);
-     console.log( "ngOnChanges" );
+//      console.log(`${propName}: currentValue = ${cur}, previousValue = ${prev}`);
+//      console.log( "ngOnChanges" );
     }
   }/*
   ngAfterViewInit() {
@@ -61,6 +61,6 @@ export class DashboardComponent implements OnInit, OnChanges {
       this.test = test ;
       this.test = this.curcontents[test].contents ;
       this.myHtml = this.test;
-      console.log( "curcontents:", this.curcontents );
+  //    console.log( "curcontents:", this.curcontents );
   }
 }

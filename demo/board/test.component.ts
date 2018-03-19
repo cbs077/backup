@@ -13,6 +13,7 @@ import {TableComponent} from '../component-wrapper/src/app/table/table.component
 import {HttpClient} from "@angular/common/http"; 
 //import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './dashboard.component';
+import { AuthenticationService } from '../_services/index';
 
 @Component({
     selector: 'app-test-component',
@@ -56,6 +57,7 @@ import { DashboardComponent } from './dashboard.component';
         </ngx-iq-table>
 
         <div class="text-right">  
+            <button type="button" class="btn btn-primary" (click)="logout()">로그아웃</button>     
             <button type="button" class="btn btn-primary" routerLink="/login">로그인</button>     
             <button type="button" class="btn btn-primary" routerLink="/write">글쓰기</button>                   
         </div> 
@@ -96,13 +98,14 @@ export class TestComponent implements OnInit, AfterViewChecked {
     constructor(private mockDataService: MockDataService,
                 private tableComponent: TableComponent,
                 private activatedRoute: ActivatedRoute,
+                private authenticationService: AuthenticationService,
                 private _http: HttpClient) 
     {
         console.log("constructor");
     //    this.getdata();        
     }
     ngAfterViewChecked(){
-        console.log("AfterViewChecked");           
+    //    console.log("AfterViewChecked");           
         if( this.person ){
            const id = +this.activatedRoute.snapshot.paramMap.get('id') ; 
 //           console.log( "id", id , this.person[id].contents );
@@ -111,7 +114,7 @@ export class TestComponent implements OnInit, AfterViewChecked {
         }
     }
     handleHeaderRowClick(data){
-       console.log("hi");
+   //    console.log("hi");
        const id = +this.activatedRoute.snapshot.paramMap.get('id') ;  
        this.dashboard.setcontents( data ); 
     //   const id = +this.activatedRoute.snapshot.paramMap.get('id') ;
@@ -151,6 +154,9 @@ export class TestComponent implements OnInit, AfterViewChecked {
                             this.curcontents = this.person ;
                             console.log("aa", this.person );                        
         });
+    }
+    logout(){
+       this.authenticationService.logout();
     }
     getdata(){           
       this.dataSource = (rpd => this.mockDataService.listPersons(rpd.from, rpd.count, rpd.orderBy ));        
