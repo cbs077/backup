@@ -10,7 +10,7 @@ import {TableState} from '../table-state';
 
 @Component({
     selector: 'ngx-iq-table',
-    template: `<table class="table">
+    template: `<table class="table table-bordered table-striped">
         <thead>
         <tr class="header">
             <th *ngFor="let column of columns" [style.width]="column.width + '' + column.widthUnit + ''"

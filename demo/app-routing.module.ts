@@ -1,12 +1,12 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {TestComponent} from './board/test.component';
+import {MainComponent} from './board/main.component';
 //import {Test2Component} from './board/test2.component';
 
 const routes: Routes = [
     {
         path: '',
-        component: TestComponent
+        component: MainComponent
     }
 ];
 

@@ -13,14 +13,13 @@ import {NgxIqTableModule} from './component-wrapper/src/app/ngx-iq-table.module'
 import {TableComponent} from './component-wrapper/src/app/table/table.component';
 import {MockDataService} from './mock-data.service';
 //import {AppRoutingModule} from './app-routing.module';
-import {TestComponent} from './board/test.component';
+import {MainComponent} from './board/main.component';
 import {WriteComponent} from './board/write.component';
 import {DashboardComponent} from './board/dashboard.component';
 
 //
 import { CKEditorModule } from 'ng2-ckeditor';
-
-import { NgxDatatableModule } from '../src';
+//import { NgxDatatableModule } from '../src';
 import { AppComponent } from './app.component';
 
 //import { BsDropdownModule } from 'ngx-bootstrap';
@@ -31,29 +30,23 @@ import { TypeaheadModule  } from 'ngx-bootstrap/typeahead';
 import {AppRoutingModule} from './app-routing.module'
 // -- test.ts
 import { WebApiObservableService } from './board/web-api-observable.service';
-/*
-// -- login
-import { HomeComponent } from './home/index';
-import { LoginComponent } from './login/index';
-import { RegisterComponent } from './register/index';
-import { AuthGuard } from './_guards/index';
-*/
+
 // used to create fake backend
-import { fakeBackendProvider } from './_helpers/index';
+import { fakeBackendProvider } from './loginpage/_helpers/index';
 //import { routing }        from './app.routing';
 
-import { AlertComponent } from './_directives/index';
-import { AuthGuard } from './_guards/index';
-import { JwtInterceptor } from './_helpers/index';
-import { AlertService, AuthenticationService, UserService } from './_services/index';
-import { HomeComponent } from './home/index';
-import { LoginComponent } from './login/index';
-import { RegisterComponent } from './register/index';
+import { AlertComponent } from './loginpage/_directives/index';
+import { AuthGuard } from './loginpage/_guards/index';
+import { JwtInterceptor } from './loginpage/_helpers/index';
+import { AlertService, AuthenticationService, UserService } from './loginpage/_services/index';
+import { HomeComponent } from './loginpage/home/index';
+import { LoginComponent } from './loginpage/login/index';
+import { RegisterComponent } from './loginpage/register/index';
 
 @NgModule({
   declarations: [
     AppComponent,    
-    TestComponent,
+    MainComponent,
     WriteComponent,
     DashboardComponent,
     AlertComponent,
@@ -66,15 +59,15 @@ import { RegisterComponent } from './register/index';
      NgbModule.forRoot(),
      HttpClientModule,
      CKEditorModule,
-     NgxDatatableModule, 
+//   NgxDatatableModule, 
      NgxIqTableModule,
      AppRoutingModule,
 //   ButtonsModule.forRoot(), 
-   RouterModule.forRoot([
-          {  path: 'write',  component: WriteComponent },       
-          {  path: 'test',  component: TestComponent },
-          { path: 'dashboard', component: TestComponent },
-          { path: 'dashboard/:id', component: TestComponent },
+     RouterModule.forRoot([
+          { path: 'write',  component: WriteComponent },       
+          { path: 'main',  component: MainComponent },
+          { path: 'dashboard', component: MainComponent },
+          { path: 'dashboard/:id', component: MainComponent },
           { path: '', component: HomeComponent, canActivate: [AuthGuard] },
           { path: 'login', component: LoginComponent },
           { path: 'register', component: RegisterComponent },

@@ -9,33 +9,38 @@ import {TableComponent} from '../component-wrapper/src/app/table/table.component
 
 import { SearchMovieModel } from './search-movie.model';
 import { WebApiObservableService } from './web-api-observable.service';
+import { environment } from '../environment';
 
 @Component({
 //    selector: 'app-test-component',
 //  templateUrl: './test.component.html',
     template:`
-     <div class="mx-auto" style="width:80% ; margin-top:30px; margin-left:auto; margin-right:auto;">
-
-<input [(ngModel)]="category"  class="form-control col-3">       
-<input [(ngModel)]="title"  class="form-control col-9">
-    
-         <ckeditor
-              [(ngModel)]="ckeditorContent">
-                <ckbutton [name]="'saveButton'"
-                  [command]="'saveCmd'"
-                  (click)="save($event)"
-                  [icon]="'save.png'"
-                  [label]="'Save Document'"
-                  [toolbar]="'clipboard,1'">
-                </ckbutton>
-          </ckeditor>
-        <button type="button" class="btn btn-primary centered"  (click)="save()">저장</button> 
+         <div class="mx-auto" style="width:80% ; margin-top:30px; margin-left:auto; margin-right:auto;">
          
+         <ul>    
+            <li><span style="width:30%">분류</span>
+            <input [(ngModel)]="category"  class="form-control col-3"></li>
+        
+            <li><span style="width:30%">제목</span>   
+            <input [(ngModel)]="title"  class="form-control col-9"></li>
+         </ul>
+         <ckeditor
+                  [(ngModel)]="ckeditorContent">
+                    <ckbutton [name]="'saveButton'"
+                      [command]="'saveCmd'"
+                      (click)="save($event)"
+                      [icon]="'save.png'"
+                      [label]="'Save Document'"
+                      [toolbar]="'clipboard,1'">
+                    </ckbutton>
+         </ckeditor>
+         <button type="button" class="btn btn-primary centered"  (click)="save()">저장</button> 
+             
         <!--    <button class="btn btn-sm" [routerLink]="['/test2']">Navegar</button> -->
      </div>
 `,
 
-    styleUrls: ['./test.component.css']
+    styleUrls: ['./main.component.css']
 })
 export class WriteComponent implements OnInit {
 
@@ -47,11 +52,11 @@ export class WriteComponent implements OnInit {
     dataSource: (requestPageData: PageRequestData) => Observable<TableResultsPage>;
     
     searchMovieModel: SearchMovieModel;
+    contents: any;
+    
     constructor(private mockDataService: MockDataService,
                 private activatedRoute: ActivatedRoute,
                 private movieObservableService: WebApiObservableService) {
-        
-  //      this.searchMovieModel = {  "title": "12" , "author": "abc"};
     }
 
     ngOnInit(): void {
@@ -64,16 +69,14 @@ export class WriteComponent implements OnInit {
     }
 
    save(): void {
- //   if ( CKEDITOR.instances.editor1.getData() == '' )
- //    alert( 'There is no data available.' );
-   
-//    console.log( CKEDITOR.instances.editor1.getData() );
-     var contents = this.ckeditorContent  ;
-     this.searchMovieModel = {  "author":this.author, "id": this.id, "category": this.category , "title": this.title , "contents": contents};  
+     var contents = this.ckeditorContent ;
+     var username = JSON.parse(localStorage.getItem("currentUser")) ; 
+     
+     this.contents = {"username": username["username"], "category": this.category , "title": this.title , "contents": contents};  
 
      console.log( "contents" , contents );
      this.movieObservableService
-            .createService('http://121.157.55.240:8080/api/books', this.searchMovieModel )
+            .createService( environment.IP + ':8080/api/books', this.contents )
             .subscribe(
                 result => console.log("5. createService: " , result)
     //            error => this.errorMessage = <any>error

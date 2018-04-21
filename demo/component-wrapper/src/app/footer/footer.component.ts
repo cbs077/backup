@@ -6,7 +6,7 @@ const PAGES_LIMIT = 6;
 
 @Component({
     selector: 'ngx-iq-footer',
-    template: `<div class="row" *ngIf="getTotalPages() > 1">
+    template: `<div class="row" *ngIf="getTotalPages() > 0">
     <div class="col-sm-6">
         <div class="pull-left">
             <div class="results-count" *ngIf="!getTotal() || getTotal() === 0">
@@ -22,15 +22,15 @@ const PAGES_LIMIT = 6;
         <div class="pull-right">
             <nav aria-label="Page navigation">
                 <ul class="pagination">
-                    <li>
-                        <a (click)="onFirstClicked()" aria-label="First" *ngIf="isFirstPageVisible()">
+                    <li class="page-item" >
+                        <a class="page-link" (click)="onFirstClicked()" aria-label="First" *ngIf="isFirstPageVisible()">
                             <span aria-hidden="true">&laquo;</span>
                         </a>
                     </li>
-                    <li *ngFor="let item of getPages()" [class.active]="item === getCurrentPage() + 1"><a
-                            (click)="pageClicked(item)">{{item}}</a></li>
-                    <li>
-                        <a (click)="onLastClicked()" aria-label="Last" *ngIf="isLastPageVisible()">
+                    <li class="page-item" *ngFor="let item of getPages()" [class.active]="item === getCurrentPage() + 1"><a
+                           class="page-link"  (click)="pageClicked(item)">{{item}}</a></li>
+                    <li class="page-item" >
+                        <a class="page-link" (click)="onLastClicked()" aria-label="Last" *ngIf="isLastPageVisible()">
                             <span aria-hidden="true">&raquo;</span>
                         </a>
                     </li>
@@ -99,6 +99,7 @@ export class FooterComponent implements OnInit {
     }
 
     isFirstPageVisible(): boolean {
+        console.log( "isFirstPageVisible" );
         const currentPage = this.getCurrentPage();
         return currentPage > PAGES_LIMIT / 2 && this.getTotalPages() > PAGES_LIMIT;
     }

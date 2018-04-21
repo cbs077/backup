@@ -3,18 +3,28 @@ import { Component, OnInit, Input, OnChanges, AfterViewChecked, SimpleChange,
 import { ActivatedRoute } from '@angular/router';
 import {Person} from '../mock-data.service';
 
-/*
-import { Hero } from '../hero';
-import { HeroService } from '../hero.service';
-*/
-
 @Component({
   selector: 'app-dashboard',
   template: ` <!-- <div>test:{{test}}</div> <div class="container-fluid bg-1 text-center"></div> -->
-    <div class="w3-example mx-auto col-8"> 
-        <span [innerHTML]="myHtml"></span>     
-        <button type="button" class="btn btn-info">1</button>
-    </div>
+   <!--  <div class="w3-example mx-auto col-8">  -->
+      
+       <table  *ngIf="detail_exists === true" class="table table-bordered mx-auto col-8">
+            <thead>
+              <tr>
+                <td style="width: 20%">{{username}}</td>
+                <td style="width: 40%">Lastname</td>
+                <td style="width: 40%">Email</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                 <td colspan="100%" [innerHTML]="myHtml"></td>                        
+              </tr>
+            </tbody>
+      </table>
+          
+   <!--      <button type="button" class="btn btn-info">1</button>
+   </div> -->
    
      <!--         <app-test-component></app-test-component>
               <router-outlet></router-outlet> -->`,
@@ -28,13 +38,12 @@ export class DashboardComponent implements OnInit, OnChanges {
   ) { }
 
   test : number ;
-  @Input() curcontents : string ;
-//  @ViewChild('one') d1:ElementRef;
+  myHtml : any;
+  username : string;
+  detail_exists = false ;
+    
+  @Input() curcontents : any ;
   prenpendHtml: string = '<div><b>this prepended html</b></div>';
-
-  test1(){
-  //  console.log("test");        
-  }
     
   ngOnInit() {
   //    const id = +this.route.snapshot.paramMap.get('id') ;
@@ -47,20 +56,15 @@ export class DashboardComponent implements OnInit, OnChanges {
       let chng = changes[propName];
       let cur  = JSON.stringify(chng.currentValue);
       let prev = JSON.stringify(chng.previousValue);
-//      console.log(`${propName}: currentValue = ${cur}, previousValue = ${prev}`);
-//      console.log( "ngOnChanges" );
     }
   }/*
   ngAfterViewInit() {
     console.log('AfterViewInit');
   }*/
   setcontents(test): void {
-  //    d1.nativeElement.insertAdjacentHTML('beforeend', '<div class="two">two</div>');
+      this.detail_exists = true;
+      this.myHtml = this.curcontents[test].contents;
+      this.username = this.curcontents[test].username ;
       
-      
-      this.test = test ;
-      this.test = this.curcontents[test].contents ;
-      this.myHtml = this.test;
-  //    console.log( "curcontents:", this.curcontents );
   }
 }
